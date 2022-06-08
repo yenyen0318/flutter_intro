@@ -37,12 +37,10 @@ class MyHomePage extends StatelessWidget {
           children: <Widget>[
             //設定用户名稱
             UserAccountsDrawerHeader(
-              accountName: const Text(
-                "CHEN YEN YEN",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18.0,
-                ),
+              accountName:const  GradientText(
+                text: 'CHEN YEN YEN', 
+                gradientColors: 
+                [Color.fromARGB(255, 106, 131, 176),Color.fromRGBO(199, 136, 157, 1)],
               ),
               accountEmail: const Text(
                 "janis03050055@gmail.com",
