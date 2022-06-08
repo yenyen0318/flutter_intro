@@ -86,7 +86,7 @@ class LoginPage extends StatelessWidget {
                   _pinCodeController.text = '';
                   Navigator.pushReplacement(  //點擊自帶返回建直接跳出APP
                     context,
-                    MaterialPageRoute(builder: (context) => const MyHomePage(title: '登入成功',)),
+                    MaterialPageRoute(builder: (context) => const MyHomePage()),
                   ); 
                 } else {
                   _pinCodeController.text = '';
