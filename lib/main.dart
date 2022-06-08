@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intro/views/login_view.dart';
-import 'package:intro/widgets/custom_gradient_appbar.dart';
+import 'package:intro/widgets/custom_gradient_item.dart';
 
 void main() {
   runApp(const MyApp());
