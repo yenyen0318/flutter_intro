@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intro/model/gradient_border.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -46,9 +47,9 @@ class LoginPage extends StatelessWidget {
                     decoration: const InputDecoration(  
                       counterText: '',      
                       focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 2,
+                        borderSide: GradientBorderSide(
+                          colors: [Color.fromARGB(255, 106, 131, 176),Color.fromRGBO(199, 136, 157, 1)],
+                          borderWidth: 2,
                         ),
                       ),  
                     ),
