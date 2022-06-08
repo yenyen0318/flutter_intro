@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intro/model/gradient_border.dart';
+import 'package:intro/main.dart';
+import 'package:intro/widgets/custom_num_pad.dart';
+import 'package:intro/widgets/gradient_border.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -38,7 +40,7 @@ class LoginPage extends StatelessWidget {
                     maxLength: 4,
                     maxLines: 1,
                     autofocus: true,
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.none,
                     style: const TextStyle(
                       fontSize: 40, 
                       color: Colors.black54,
@@ -59,6 +61,39 @@ class LoginPage extends StatelessWidget {
             ),
 
             const SizedBox(height: 40),
+
+            //客製鍵盤
+            NumPad(
+              buttonSize: 70,
+              backgroundColor:  const [Color.fromARGB(255, 106, 131, 176),Color.fromRGBO(199, 136, 157, 1),],
+              iconColor: Colors.white,
+              numController: _pinCodeController,
+              onDelete: () {
+                _pinCodeController.text = _pinCodeController.text
+                    .substring(0, _pinCodeController.text.length - 1);
+              },
+              onSubmit: () {
+                debugPrint('Your code: ${_pinCodeController.text}');
+                if(_pinCodeController.text == '0519'){
+                  _pinCodeController.text = '';
+                  Navigator.pushReplacement(  //點擊自帶返回建直接跳出APP
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyHomePage(title: '登入成功',)),
+                  ); 
+                } else {
+                  _pinCodeController.text = '';
+                  showDialog(
+                    context: context,
+                    barrierDismissible: true, //點擊對話框是否遮蔽
+                    builder: (BuildContext context) {
+                      return const Center(
+                          child: Text("ERROR"),
+                      );
+                    }
+                  );
+                }
+              },
+            ),
           ],
         ),
       ),
