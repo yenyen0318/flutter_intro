@@ -1,18 +1,5 @@
 # intro
+Using flutter to create my intro page. This is my first time writing if you find any problems, please let me know thank you.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# flutter_intro
-# flutter_intro
+## References
+1. [File and Folder structure in Flutter](https://medium.com/flutter-community/file-and-folder-structure-in-flutter-967b8be3155e)
