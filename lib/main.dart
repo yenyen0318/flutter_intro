@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intro/views/about_view.dart';
 import 'package:intro/views/login_view.dart';
+import 'package:intro/views/todo_view.dart';
 import 'package:intro/widgets/custom_gradient_item.dart';
 
 void main() {
@@ -91,7 +92,7 @@ class MyHomePage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginPage()),
+                      MaterialPageRoute(builder: (context) => const TodoListPage(title: '待辦事項',)),
                     );
                   }
                 ),

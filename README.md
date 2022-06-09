@@ -5,6 +5,9 @@ Using flutter to create my intro page. This is my first time writing if you find
 
 ## Library
 1. [flutter_arc_text](https://pub.dev/packages/flutter_arc_text)
+2. [sqflite](https://pub.dev/packages/sqflite)
+3. [flutter_slidable](https://pub.dev/packages/flutter_slidable)
+4. [intl](https://pub.dev/packages/intl/)
 
 ## References
 1. [File and Folder structure in Flutter](https://medium.com/flutter-community/file-and-folder-structure-in-flutter-967b8be3155e)

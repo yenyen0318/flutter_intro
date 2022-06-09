@@ -5,10 +5,12 @@ class GradientAppBar extends StatelessWidget with PreferredSizeWidget{
     Key? key,
     required this.gradientColors, 
     required this.text,
+    this.actions,
   }) : super(key: key);
 
   final List<Color> gradientColors;
   final String text;
+  final List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,7 @@ class GradientAppBar extends StatelessWidget with PreferredSizeWidget{
               )
           ),
         ),
+        actions: actions,
       );
   }
 
@@ -118,6 +121,77 @@ class GradientChip extends StatelessWidget {
             padding: const EdgeInsets.all(7),
             child: Text(text, style: const TextStyle(color: Colors.white),),
           )
+      );
+  }
+}
+
+class GradientFloatingActionButton extends StatelessWidget {
+  final Icon icon;
+  final List<Color> gradientColors;
+  final VoidCallback? onPressed;
+
+  const GradientFloatingActionButton({
+    Key? key,
+    required this.icon,
+    required this.gradientColors,
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      child: Container(
+        width: 60,
+        height: 60,
+        child: icon,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30.0), 
+          gradient: LinearGradient(
+              colors: gradientColors,
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter
+          )
+        ),
+      ),
+      onPressed: onPressed,
+    );
+  }
+}
+
+class GradientButton extends StatelessWidget {
+  final Icon icon;
+  final Text text;
+  final List<Color> gradientColors;
+  final VoidCallback? onPressed;
+
+  const GradientButton({
+    Key? key,
+    required this.icon,
+    required this.text,
+    required this.gradientColors,
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: ElevatedButton.icon(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.transparent),
+            shadowColor: MaterialStateProperty.all(Colors.transparent),
+          ),
+          icon: icon,
+          label: text,
+          onPressed: onPressed,
+        ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.0),
+          gradient: LinearGradient(
+              colors: gradientColors,
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter
+          )
+        ),
       );
   }
 }
