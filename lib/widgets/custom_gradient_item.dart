@@ -116,7 +116,7 @@ class GradientChip extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.all(7),
-            child: Text(text, style: TextStyle(color: Colors.white),),
+            child: Text(text, style: const TextStyle(color: Colors.white),),
           )
       );
   }

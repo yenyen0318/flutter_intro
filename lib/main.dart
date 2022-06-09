@@ -14,9 +14,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: LoginPage(),
     );
   }
@@ -64,7 +61,7 @@ class MyHomePage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => AboutPage()),
+                  MaterialPageRoute(builder: (context) => const AboutPage()),
                 );
               }
             ),
@@ -78,6 +75,48 @@ class MyHomePage extends StatelessWidget {
                 );
               }
             ),
+            ExpansionTile(
+              title: const Text('作品集'),
+              leading: const Icon(Icons.favorite,),
+              backgroundColor: const Color.fromARGB(246, 234, 232, 232),
+              textColor: Colors.black,
+              iconColor: Colors.black45,
+              collapsedBackgroundColor: Colors.transparent,
+              collapsedTextColor: Colors.black,
+              collapsedIconColor: Colors.black45,
+              children: <Widget>[
+                ListTile(
+                  leading: const Icon(Icons.science, color: Colors.transparent,),
+                  title: const Text('待辦事項'),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
+                  }
+                ),
+                ListTile(
+                 leading: const Icon(Icons.science, color: Colors.transparent,),
+                  title: const Text('文字辨識'),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
+                  }
+                ),
+                ListTile(
+                 leading: const Icon(Icons.science, color: Colors.transparent,),
+                  title: const Text('取得當前座標'),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
+                  }
+                ),
+              ]
+            )
           ],
         ),
       ),

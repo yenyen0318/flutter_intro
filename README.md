@@ -1,6 +1,8 @@
 # intro
 Using flutter to create my intro page. This is my first time writing if you find any problems, please let me know thank you.
 
+![Alt text](assets/images/cat.jpg)
+
 ## Library
 1. [flutter_arc_text](https://pub.dev/packages/flutter_arc_text)
 
