@@ -10,3 +10,4 @@ Using flutter to create my intro page. This is my first time writing if you find
 3. [Flutter: how to draw text along an arc](https://medium.com/mews-devs/flutter-how-to-draw-text-along-an-arc-840d5501db69)
 4. [How to add Gradient Color Text in Flutter
 ](https://www.fluttercampus.com/guide/156/how-to-add-gradient-color-text-in-flutter/)
+5. [Flutter: Create a timeline UI](https://stackoverflow.com/questions/49635381/flutter-create-a-timeline-ui)

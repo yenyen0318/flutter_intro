@@ -66,3 +66,58 @@ class GradientBorderSide extends BorderSide {
   ..shader = LinearGradient(colors: colors).createShader(const Rect.fromLTRB(0, 0, 200, 0)
   ); 
 }
+
+class GradientChips extends StatelessWidget {
+  final List<String>  items;
+  final List<Color> gradientColors;
+
+  const GradientChips({
+    Key? key,
+    required this.items,
+    required this.gradientColors,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5.0,),
+      child: Wrap(
+            alignment: WrapAlignment.start,
+            spacing: 5,
+            runSpacing: 5, // to apply margin in the cross axis of the wrap
+            children: items.map((item) {
+              return GradientChip(text: item, gradientColors: gradientColors);
+            }).toList(),
+          ),
+    );
+  }
+}
+
+class GradientChip extends StatelessWidget {
+  final String text;
+  final List<Color> gradientColors;
+
+  const GradientChip({
+    Key? key,
+    required this.text,
+    required this.gradientColors,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30.0), //3像素圆角
+              gradient: LinearGradient(
+                  colors: gradientColors,
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter
+              )
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(7),
+            child: Text(text, style: TextStyle(color: Colors.white),),
+          )
+      );
+  }
+}

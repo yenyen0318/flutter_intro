@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intro/views/about_view.dart';
 import 'package:intro/views/login_view.dart';
 import 'package:intro/widgets/custom_gradient_item.dart';
 
@@ -26,7 +27,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+   return Scaffold(
       appBar: const GradientAppBar(
         gradientColors: [Color.fromARGB(255, 106, 131, 176),Color.fromRGBO(199, 136, 157, 1)],
         text: 'Hello'
@@ -58,12 +59,12 @@ class MyHomePage extends StatelessWidget {
                   )
             ),
             ListTile(
-              leading: const Icon(Icons.science),
-              title: const Text('實驗頁面'),
+              leading: const Icon(Icons.person),
+              title: const Text('關於我'),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
+                  MaterialPageRoute(builder: (context) => AboutPage()),
                 );
               }
             ),
@@ -80,7 +81,7 @@ class MyHomePage extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ); 
   }
 }
 
