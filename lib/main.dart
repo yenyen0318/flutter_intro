@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intro/views/about_view.dart';
+import 'package:intro/views/landscape_view.dart';
 import 'package:intro/views/login_view.dart';
+import 'package:intro/views/test_view.dart';
 import 'package:intro/views/todo_view.dart';
 import 'package:intro/widgets/custom_gradient_item.dart';
 
@@ -93,6 +95,16 @@ class MyHomePage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => const TodoListPage(title: '待辦事項',)),
+                    );
+                  }
+                ),
+                ListTile(
+                  leading: const Icon(Icons.science, color: Colors.transparent,),
+                  title: const Text('強制橫屏'),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const LandscapePage(title: '強制橫屏',)),
                     );
                   }
                 ),

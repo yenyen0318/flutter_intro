@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../database/TodoDB.dart';
 import '../model/todo.dart';
 import '../widgets/custom_gradient_item.dart';
