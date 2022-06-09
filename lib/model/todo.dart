@@ -32,20 +32,17 @@ class TodoItem extends StatelessWidget {
     return Slidable(
         key: const ValueKey(0),
         startActionPane: ActionPane(
-          extentRatio: 0.3,       //可滑動寬度
+          extentRatio: 0.2,       //可滑動寬度
           motion: const DrawerMotion(), //滑動動畫
-          dragDismissible: false, //不可滑動超過一定比例
+          dragDismissible: true, //不可滑動超過一定比例
+          dismissible: DismissiblePane(
+            onDismissed: () {
+              onTodoDelete(todo);     
+            }
+          ),
           children: [
             SlidableAction(
-              backgroundColor: const Color(0xFFFE4A49),
-              foregroundColor: Colors.white,
-              icon: Icons.delete,
-              onPressed: (context) {
-                onTodoDelete(todo);         
-              },
-            ),
-            SlidableAction(
-              backgroundColor: Colors.orange,
+              backgroundColor: Colors.purple,
               foregroundColor: Colors.white,
               icon: Icons.edit,
               onPressed: (context) {
@@ -56,10 +53,12 @@ class TodoItem extends StatelessWidget {
         ),
 
         child: CheckboxListTile(
+          activeColor: Colors.transparent,
+          checkColor: Colors.purple[200],
           title:Text(todo.title, style: _getTextStyle(todo.isfinish)),
           subtitle: Text(todo.detail, style: _getTextStyle(todo.isfinish)),
           secondary: IconButton(
-            icon: getStarStyle(todo.top),
+            icon: getFavoriteStyle(todo.top),
             splashColor: Colors.transparent,  
             highlightColor: Colors.transparent,
             onPressed: (){
@@ -77,12 +76,12 @@ class TodoItem extends StatelessWidget {
   }
 }
 
-Icon getStarStyle(bool top){
+Icon getFavoriteStyle(bool top){
 return top ? Icon(
-      Icons.star,
-      color: Colors.yellow[700]
+      Icons.favorite,
+      color: Colors.pink[200]
     ) : const Icon(
-      Icons.star,
+      Icons.favorite,
       color: Colors.black54
     );
 } 

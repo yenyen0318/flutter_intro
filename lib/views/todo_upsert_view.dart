@@ -91,7 +91,7 @@ class _UpsertTodoListState extends State<UpsertTodoList> {
           ButtonBar(
             children: <Widget>[
               IconButton(
-                icon: getStarStyle(_isTop),
+                icon: getFavoriteStyle(_isTop),
                 onPressed: () {
                   setState(() {
                     _isTop = !_isTop;
