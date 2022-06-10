@@ -15,6 +15,7 @@ class VideoPage extends StatefulWidget {
 class _VideoPageState extends State<VideoPage> {
   late VideoPlayerController _controller;
   bool isFullscreen = false;
+  bool isFitScreen = false;
   
   @override
   void initState() {
@@ -41,71 +42,81 @@ class _VideoPageState extends State<VideoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MediaQuery.of(context).orientation == Orientation.landscape ? Colors.black : Colors.white,
       appBar:  MediaQuery.of(context).orientation == Orientation.landscape ? null : GradientAppBar(
         gradientColors: const [Color.fromARGB(255, 106, 131, 176),Color.fromRGBO(199, 136, 157, 1)],
         text: widget.title,
       ),
-      body: Stack(
-        children: [
-          //影片
-          Container(
-            width:MediaQuery.of(context).size.width,
-            child: _controller.value.isInitialized
-              ? AspectRatio(
-                  aspectRatio: _controller.value.aspectRatio,
-                  child: VideoPlayer(_controller),
+      body: Center(
+        child: Stack(
+          children: [
+            //影片
+            Container(
+              width:isFitScreen ? MediaQuery.of(context).size.width : null,
+              child: _controller.value.isInitialized
+                ? AspectRatio(
+                    aspectRatio: _controller.value.aspectRatio,
+                    child: VideoPlayer(_controller),
+                  )
+                : Container(),
+            ),
+            //控制列
+            Positioned(
+              child: _controller.value.isInitialized ? SizedBox(
+                height: 50,
+                width: MediaQuery.of(context).size.width,
+                child:Container(
+                  color: Colors.transparent,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      IconButton(
+                        icon: Icon(_controller.value.isPlaying ? Icons.pause : Icons.play_arrow,),
+                        onPressed: () {
+                          setState(() {
+                            _controller.value.isPlaying
+                                ? _controller.pause()
+                                : _controller.play();
+                          });
+                        },
+                      ),
+                      (MediaQuery.of(context).orientation == Orientation.landscape ? 
+                      IconButton(
+                        icon: Icon(Icons.fit_screen),
+                        onPressed: () {
+                          setState(() {
+                            isFitScreen = !isFitScreen;
+                          });
+                        },
+                      ) : Container()),
+                      IconButton(
+                        icon: Icon(Icons.fullscreen),
+                        onPressed: () {
+                          if (isFullscreen){
+                            SystemChrome.setPreferredOrientations([
+                              DeviceOrientation.portraitDown,
+                              DeviceOrientation.portraitUp,
+                            ]);
+                          } else {
+                            SystemChrome.setPreferredOrientations([
+                              DeviceOrientation.landscapeRight,
+                              DeviceOrientation.landscapeLeft,
+                            ]);
+                          }
+                          setState(() {
+                            isFullscreen = !isFullscreen;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
                 )
-              : Container(),
-          ),
-          //控制列
-          Positioned(
-            child: _controller.value.isInitialized ? SizedBox(
-              height: 50,
-              width: MediaQuery.of(context).size.width,
-              child:Container(
-                color: Colors.transparent,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    IconButton(
-                      icon: Icon(_controller.value.isPlaying ? Icons.pause : Icons.play_arrow,),
-                      onPressed: () {
-                        setState(() {
-                          _controller.value.isPlaying
-                              ? _controller.pause()
-                              : _controller.play();
-                        });
-                      },
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.fullscreen),
-                      onPressed: () {
-                        if (isFullscreen){
-                          SystemChrome.setPreferredOrientations([
-                            DeviceOrientation.portraitDown,
-                            DeviceOrientation.portraitUp,
-                          ]);
-                        } else {
-                          SystemChrome.setPreferredOrientations([
-                            DeviceOrientation.landscapeRight,
-                            DeviceOrientation.landscapeLeft,
-                          ]);
-                        }
-                        setState(() {
-                          isFullscreen = !isFullscreen;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-              )
-            ) : Container(),
-            bottom: 0,
-          )
-        ],
-      ),
-      
+              ) : Container(),
+              bottom: 0,
+            )
+          ],
+        ),
+      )
     );
   }
 }
