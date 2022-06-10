@@ -1,7 +1,7 @@
 # intro
 Using flutter to create my intro page. This is my first time writing if you find any problems, please let me know thank you.
 
-![Alt text](assets/images/cat.jpg)
+![Alt text](assets/icons/yen.png)
 
 ## Library
 1. [flutter_arc_text](https://pub.dev/packages/flutter_arc_text)
@@ -9,6 +9,7 @@ Using flutter to create my intro page. This is my first time writing if you find
 3. [flutter_slidable](https://pub.dev/packages/flutter_slidable)
 4. [intl](https://pub.dev/packages/intl/)
 5. [flutter_launcher_icons](https://pub.dev/packages/flutter_launcher_icons)
+6. [video_player](https://pub.dev/packages/video_player)
 
 ## References
 1. [File and Folder structure in Flutter](https://medium.com/flutter-community/file-and-folder-structure-in-flutter-967b8be3155e)

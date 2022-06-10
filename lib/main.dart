@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intro/views/about_view.dart';
-import 'package:intro/views/landscape_view.dart';
+import 'package:intro/views/video_view.dart';
 import 'package:intro/views/login_view.dart';
 import 'package:intro/views/test_view.dart';
 import 'package:intro/views/todo_view.dart';
@@ -100,11 +100,11 @@ class MyHomePage extends StatelessWidget {
                 ),
                 ListTile(
                   leading: const Icon(Icons.science, color: Colors.transparent,),
-                  title: const Text('強制橫屏'),
+                  title: const Text('影片播放'),
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const LandscapePage(title: '強制橫屏',)),
+                      MaterialPageRoute(builder: (context) => const VideoPage(title: '影片播放',)),
                     );
                   }
                 ),
