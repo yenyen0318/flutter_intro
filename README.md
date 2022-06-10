@@ -8,6 +8,7 @@ Using flutter to create my intro page. This is my first time writing if you find
 2. [sqflite](https://pub.dev/packages/sqflite)
 3. [flutter_slidable](https://pub.dev/packages/flutter_slidable)
 4. [intl](https://pub.dev/packages/intl/)
+5. [flutter_launcher_icons](https://pub.dev/packages/flutter_launcher_icons)
 
 ## References
 1. [File and Folder structure in Flutter](https://medium.com/flutter-community/file-and-folder-structure-in-flutter-967b8be3155e)
@@ -16,3 +17,4 @@ Using flutter to create my intro page. This is my first time writing if you find
 4. [How to add Gradient Color Text in Flutter
 ](https://www.fluttercampus.com/guide/156/how-to-add-gradient-color-text-in-flutter/)
 5. [Flutter: Create a timeline UI](https://stackoverflow.com/questions/49635381/flutter-create-a-timeline-ui)
+6. [Changing App Icon](https://www.flutterbeads.com/change-app-name-in-flutter/)
