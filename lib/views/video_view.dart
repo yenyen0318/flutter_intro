@@ -17,10 +17,11 @@ class _VideoPageState extends State<VideoPage>
   late VideoPlayerController _videoPlayerController;
   late AnimationController _fadeInFadeOutAnimationController;
   late Animation<double> _fadeInFadeOutAnimation;
-  bool isFullscreen = false;
-  bool isFitScreen = false;
-  bool isMuted = false;
-  double speed = 1.0;
+  bool _isFullscreen = false;
+  bool _isFitScreen = false;
+  bool _isMuted = false;
+  double _speed = 1.0;
+  double _sliderValue = 0;
 
   @override
   void initState() {
@@ -39,7 +40,7 @@ class _VideoPageState extends State<VideoPage>
 
   @override
   dispose() {
-    isFullscreen = false;
+    _isFullscreen = false;
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -85,7 +86,7 @@ class _VideoPageState extends State<VideoPage>
                       }
                     },
                     child: Container(
-                        width: isFitScreen
+                        width: _isFitScreen
                             ? MediaQuery.of(context).size.width
                             : null,
                         child: AspectRatio(
@@ -107,7 +108,7 @@ class _VideoPageState extends State<VideoPage>
                               alignedDropdown: true,
                               child: DropdownButton(
                                 style: const TextStyle(color: Colors.black),
-                                value: speed,
+                                value: _speed,
                                 items: <double>[0.25, 0.5, 1.0, 2.0, 5.0]
                                     .map((value) => DropdownMenuItem(
                                           child: SizedBox(
@@ -118,9 +119,9 @@ class _VideoPageState extends State<VideoPage>
                                         ))
                                     .toList(),
                                 onChanged: (double? newValue) {
-                                  speed = newValue!;
+                                  _speed = newValue!;
                                   _videoPlayerController
-                                      .setPlaybackSpeed(speed);
+                                      .setPlaybackSpeed(_speed);
                                   setState(() {});
                                 },
                               ),
@@ -158,36 +159,56 @@ class _VideoPageState extends State<VideoPage>
                                 ),
                                 //重複播放
                                 IconButton(
-                                  icon: _videoPlayerController.value.isLooping ? 
-                                    Icon(Icons.repeat) : 
-                                    Icon(Icons.lock),
+                                  icon: _videoPlayerController.value.isLooping
+                                      ? Icon(Icons.repeat)
+                                      : Icon(Icons.lock),
                                   onPressed: () {
                                     setState(() {
-                                      _videoPlayerController.setLooping(!_videoPlayerController.value.isLooping);
+                                      _videoPlayerController.setLooping(
+                                          !_videoPlayerController
+                                              .value.isLooping);
                                     });
                                   },
                                 ),
-                                //播放時間
+                                //時間軸
                                 ValueListenableBuilder(
                                   valueListenable: _videoPlayerController,
                                   builder:
                                       (context, VideoPlayerValue value, child) {
                                     return Align(
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          "${value.position.toString()}",
-                                          style: TextStyle(fontSize: 14),
-                                        ));
+                                      alignment: Alignment.center,
+                                      child: AbsorbPointer(
+                                          child: SliderTheme(
+                                              child: Slider(
+                                                activeColor: Colors.black54,
+                                                inactiveColor: Colors.black26,
+                                                min: 0.0,
+                                                max: _videoPlayerController
+                                                    .value
+                                                    .duration
+                                                    .inMilliseconds
+                                                    .toDouble(),
+                                                value: value
+                                                    .position.inMilliseconds
+                                                    .toDouble(),
+                                                onChanged: (value) {},
+                                              ),
+                                              data: SliderTheme.of(context)
+                                                  .copyWith(
+                                                thumbShape: SliderComponentShape
+                                                    .noOverlay,
+                                              ))),
+                                    );
                                   },
                                 ),
                                 //靜音
                                 IconButton(
-                                  icon: isMuted
+                                  icon: _isMuted
                                       ? Icon(Icons.volume_off)
                                       : Icon(Icons.volume_up),
                                   onPressed: () {
-                                    isMuted = !isMuted;
-                                    if (isMuted) {
+                                    _isMuted = !_isMuted;
+                                    if (_isMuted) {
                                       _videoPlayerController.setVolume(0.0);
                                     } else {
                                       _videoPlayerController.setVolume(1.0);
@@ -203,7 +224,7 @@ class _VideoPageState extends State<VideoPage>
                                         icon: Icon(Icons.fit_screen),
                                         onPressed: () {
                                           setState(() {
-                                            isFitScreen = !isFitScreen;
+                                            _isFitScreen = !_isFitScreen;
                                           });
                                         },
                                       )
@@ -212,8 +233,8 @@ class _VideoPageState extends State<VideoPage>
                                 IconButton(
                                   icon: Icon(Icons.fullscreen),
                                   onPressed: () {
-                                    isFullscreen = !isFullscreen;
-                                    if (isFullscreen) {
+                                    _isFullscreen = !_isFullscreen;
+                                    if (_isFullscreen) {
                                       SystemChrome.setPreferredOrientations([
                                         DeviceOrientation.landscapeRight,
                                         DeviceOrientation.landscapeLeft,
