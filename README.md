@@ -20,3 +20,4 @@ Using flutter to create my intro page. This is my first time writing if you find
 5. [Flutter: Create a timeline UI](https://stackoverflow.com/questions/49635381/flutter-create-a-timeline-ui)
 6. [Changing App Icon](https://www.flutterbeads.com/change-app-name-in-flutter/)
 7. [show/hide status bar](https://stackoverflow.com/questions/69326384/setenabledsystemuioverlays-is-deprecated-and-shouldnt-be-used-migrate-to-seten)
+8. [Sliding animation to bottom in flutter](https://stackoverflow.com/questions/53278792/sliding-animation-to-bottom-in-flutter)
