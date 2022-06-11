@@ -21,3 +21,4 @@ Using flutter to create my intro page. This is my first time writing if you find
 6. [Changing App Icon](https://www.flutterbeads.com/change-app-name-in-flutter/)
 7. [show/hide status bar](https://stackoverflow.com/questions/69326384/setenabledsystemuioverlays-is-deprecated-and-shouldnt-be-used-migrate-to-seten)
 8. [Sliding animation to bottom in flutter](https://stackoverflow.com/questions/53278792/sliding-animation-to-bottom-in-flutter)
+9. [drag a widget](https://stackoverflow.com/questions/65977699/how-to-create-a-movable-widget-in-flutter-such-that-is-stays-at-the-position-it)
