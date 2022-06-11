@@ -156,6 +156,17 @@ class _VideoPageState extends State<VideoPage>
                                     });
                                   },
                                 ),
+                                //重複播放
+                                IconButton(
+                                  icon: _videoPlayerController.value.isLooping ? 
+                                    Icon(Icons.repeat) : 
+                                    Icon(Icons.lock),
+                                  onPressed: () {
+                                    setState(() {
+                                      _videoPlayerController.setLooping(!_videoPlayerController.value.isLooping);
+                                    });
+                                  },
+                                ),
                                 //播放時間
                                 ValueListenableBuilder(
                                   valueListenable: _videoPlayerController,
