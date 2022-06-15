@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intro/views/about_view.dart';
+import 'package:intro/views/article_view.dart';
 import 'package:intro/views/drag_play_view.dart';
 import 'package:intro/views/video_view.dart';
 import 'package:intro/views/login_view.dart';
@@ -45,6 +46,15 @@ class MyHomePage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const AboutPage()),
+                  );
+                }),
+            ListTile(
+                leading: const Icon(Icons.article),
+                title: const Text('學習筆記'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ArticlePage()),
                   );
                 }),
             ListTile(
