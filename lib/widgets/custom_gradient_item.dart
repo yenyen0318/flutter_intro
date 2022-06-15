@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class GradientAppBar extends StatelessWidget with PreferredSizeWidget{
+class GradientAppBar extends StatelessWidget with PreferredSizeWidget {
   const GradientAppBar({
     Key? key,
-    required this.gradientColors, 
+    required this.gradientColors,
     required this.text,
     this.actions,
   }) : super(key: key);
@@ -15,18 +15,16 @@ class GradientAppBar extends StatelessWidget with PreferredSizeWidget{
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        title: Text(text),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors:gradientColors,
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter
-              )
-          ),
-        ),
-        actions: actions,
-      );
+      title: Text(text),
+      flexibleSpace: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: gradientColors,
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter)),
+      ),
+      actions: actions,
+    );
   }
 
   @override
@@ -45,33 +43,31 @@ class GradientText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-    text,
-    style: TextStyle(
-          fontSize: 20.0,
-          fontWeight: FontWeight.bold,
-          foreground: Paint()..shader =LinearGradient(
-                  colors:gradientColors,
-              ).createShader(const Rect.fromLTWH(0.0, 0.0, 200.0, 100.0))
-        )
-    );
+    return Text(text,
+        style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+            foreground: Paint()
+              ..shader = LinearGradient(
+                colors: gradientColors,
+              ).createShader(const Rect.fromLTWH(0.0, 0.0, 200.0, 100.0))));
   }
 }
 
-class GradientBorderSide extends BorderSide {   
-  final List<Color> colors;    
+class GradientBorderSide extends BorderSide {
+  final List<Color> colors;
   final double borderWidth;
-  const GradientBorderSide({required this.colors, required this.borderWidth});    
-  
-  @override   
-  Paint toPaint() => Paint()     
-  ..strokeWidth = borderWidth  
-  ..shader = LinearGradient(colors: colors).createShader(const Rect.fromLTRB(0, 0, 200, 0)
-  ); 
+  const GradientBorderSide({required this.colors, required this.borderWidth});
+
+  @override
+  Paint toPaint() => Paint()
+    ..strokeWidth = borderWidth
+    ..shader = LinearGradient(colors: colors)
+        .createShader(const Rect.fromLTRB(0, 0, 200, 0));
 }
 
 class GradientChips extends StatelessWidget {
-  final List<String>  items;
+  final List<String> items;
   final List<Color> gradientColors;
 
   const GradientChips({
@@ -83,15 +79,17 @@ class GradientChips extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5.0,),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 5.0,
+      ),
       child: Wrap(
-            alignment: WrapAlignment.start,
-            spacing: 5,
-            runSpacing: 5, // to apply margin in the cross axis of the wrap
-            children: items.map((item) {
-              return GradientChip(text: item, gradientColors: gradientColors);
-            }).toList(),
-          ),
+        alignment: WrapAlignment.start,
+        spacing: 5,
+        runSpacing: 5, // to apply margin in the cross axis of the wrap
+        children: items.map((item) {
+          return GradientChip(text: item, gradientColors: gradientColors);
+        }).toList(),
+      ),
     );
   }
 }
@@ -109,19 +107,19 @@ class GradientChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30.0), //3像素圆角
-              gradient: LinearGradient(
-                  colors: gradientColors,
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter
-              )
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30.0), //3像素圆角
+            gradient: LinearGradient(
+                colors: gradientColors,
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter)),
+        child: Padding(
+          padding: const EdgeInsets.all(7),
+          child: Text(
+            text,
+            style: const TextStyle(color: Colors.white),
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(7),
-            child: Text(text, style: const TextStyle(color: Colors.white),),
-          )
-      );
+        ));
   }
 }
 
@@ -145,13 +143,11 @@ class GradientFloatingActionButton extends StatelessWidget {
         height: 60,
         child: icon,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30.0), 
-          gradient: LinearGradient(
-              colors: gradientColors,
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter
-          )
-        ),
+            borderRadius: BorderRadius.circular(30.0),
+            gradient: LinearGradient(
+                colors: gradientColors,
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter)),
       ),
       onPressed: onPressed,
     );
@@ -175,23 +171,21 @@ class GradientButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: ElevatedButton.icon(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.transparent),
-            shadowColor: MaterialStateProperty.all(Colors.transparent),
-          ),
-          icon: icon,
-          label: text,
-          onPressed: onPressed,
+      child: ElevatedButton.icon(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(Colors.transparent),
+          shadowColor: MaterialStateProperty.all(Colors.transparent),
         ),
-        decoration: BoxDecoration(
+        icon: icon,
+        label: text,
+        onPressed: onPressed,
+      ),
+      decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.0),
           gradient: LinearGradient(
               colors: gradientColors,
               begin: Alignment.bottomCenter,
-              end: Alignment.topCenter
-          )
-        ),
-      );
+              end: Alignment.topCenter)),
+    );
   }
 }

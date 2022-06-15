@@ -139,7 +139,7 @@ class _VideoPageState extends State<VideoPage>
                           child: Container(
                             color: Colors.transparent,
                             child: Row(
-                             crossAxisAlignment: CrossAxisAlignment.stretch,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: <Widget>[
                                 //暫停/播放
                                 IconButton(

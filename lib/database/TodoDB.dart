@@ -10,21 +10,21 @@ class Todo {
   final bool top;
   final DateTime? endDate;
 
-  Todo({
-    this.id,     //編號
-    this.title = '',  //標題
-    this.detail = '', //詳細資訊
-    this.top = false,    //置頂
-    this.isfinish = false, //是否完成
-    this.endDate  //完成日期
-  });
+  Todo(
+      {this.id, //編號
+      this.title = '', //標題
+      this.detail = '', //詳細資訊
+      this.top = false, //置頂
+      this.isfinish = false, //是否完成
+      this.endDate //完成日期
+      });
 
   Map<String, dynamic> toMap() {
-    var map = <String, dynamic> {
+    var map = <String, dynamic>{
       'title': title,
       'detail': detail,
-      'top': top ? 1: 0,
-      'isfinish': isfinish ? 1: 0,
+      'top': top ? 1 : 0,
+      'isfinish': isfinish ? 1 : 0,
       'endDate': endDate.toString()
     };
 
@@ -58,14 +58,14 @@ class TodoDB {
   static Future<List<Todo>> getTodos() async {
     final Database db = await database;
     final List<Map<String, dynamic>> maps = await db.rawQuery(
-      'SELECT id, title, detail, isfinish, top, endDate FROM todos ORDER BY isfinish ASC, top DESC');
-    
+        'SELECT id, title, detail, isfinish, top, endDate FROM todos ORDER BY isfinish ASC, top DESC');
+
     return List.generate(maps.length, (i) {
       return Todo(
         id: maps[i]['id'],
         title: maps[i]['title'],
         detail: maps[i]['detail'],
-        isfinish:maps[i]['isfinish'] == 1,
+        isfinish: maps[i]['isfinish'] == 1,
         top: maps[i]['top'] == 1,
         endDate: DateFormat('yyyy-MM-dd').parse(maps[i]['endDate']),
       );
@@ -74,12 +74,12 @@ class TodoDB {
 
   //新增
   static Future<void> addTodo(Todo todo) async {
-      final Database db = await database;
-      await db.insert(
-        'todos',
-        todo.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
+    final Database db = await database;
+    await db.insert(
+      'todos',
+      todo.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   //修改
@@ -106,6 +106,7 @@ class TodoDB {
   static Future<void> deleteAllTodo() async {
     final Database db = await database;
     await db.execute("DROP TABLE IF EXISTS todos");
-    await db.execute("CREATE TABLE todos(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title TEXT, detail TEXT, top INTEGER, isfinish INTEGER, endDate INTEGER)");
+    await db.execute(
+        "CREATE TABLE todos(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title TEXT, detail TEXT, top INTEGER, isfinish INTEGER, endDate INTEGER)");
   }
 }

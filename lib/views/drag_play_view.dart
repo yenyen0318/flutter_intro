@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intro/widgets/drag.dart';
 
-
 class DragPlayPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => DragPlayPageState();
 }
 
-class DragPlayPageState extends State<DragPlayPage> with SingleTickerProviderStateMixin {
-
+class DragPlayPageState extends State<DragPlayPage>
+    with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
@@ -22,8 +21,8 @@ class DragPlayPageState extends State<DragPlayPage> with SingleTickerProviderSta
           Center(
             child: StatefulDragArea(
               child: Text('drag and resized me'),
-          ),)
-          
+            ),
+          )
         ],
       ),
     );

@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
 
 class NumPad extends StatelessWidget {
-  final double buttonSize;  //按鈕文字大小
-  final Color buttonColor;  //按鈕顏色
-  final Color iconColor;    //非數字按鈕顏色
-  final List<Color> backgroundColor;  //鍵盤背景顏色
-  final Color shadowColor;  //按鈕陰影顏色
+  final double buttonSize; //按鈕文字大小
+  final Color buttonColor; //按鈕顏色
+  final Color iconColor; //非數字按鈕顏色
+  final List<Color> backgroundColor; //鍵盤背景顏色
+  final Color shadowColor; //按鈕陰影顏色
   final double borderRadius; //圓角
   final TextEditingController numController; //輸入框文字
-  final Function onDelete;    //刪除事件
-  final Function onSubmit;  //送出事件
+  final Function onDelete; //刪除事件
+  final Function onSubmit; //送出事件
 
   const NumPad({
     Key? key,
-    this.buttonSize = 70,               
-    this.buttonColor = Colors.transparent, 
-    this.iconColor = Colors.amber,    
+    this.buttonSize = 70,
+    this.buttonColor = Colors.transparent,
+    this.iconColor = Colors.amber,
     this.shadowColor = Colors.transparent,
     this.borderRadius = 50,
-    required this.backgroundColor, 
-    required this.numController, 
-    required this.onDelete,   
-    required this.onSubmit, 
+    required this.backgroundColor,
+    required this.numController,
+    required this.onDelete,
+    required this.onSubmit,
   }) : super(key: key);
 
   //設定非數字按鈕大小(與文字一樣會過大)
-  double _getIconButtonSize(){
+  double _getIconButtonSize() {
     double iconSize = buttonSize - 24;
     return iconSize >= 24 ? iconSize : 24;
   }
@@ -34,13 +34,13 @@ class NumPad extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(borderRadius),topRight: Radius.circular(borderRadius)),
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(borderRadius),
+              topRight: Radius.circular(borderRadius)),
           gradient: LinearGradient(
               colors: backgroundColor,
               begin: Alignment.bottomCenter,
-              end: Alignment.topCenter
-          )
-      ),
+              end: Alignment.topCenter)),
       child: Column(
         children: [
           const SizedBox(height: 20),
@@ -164,7 +164,7 @@ class NumberButton extends StatelessWidget {
   final int number;
   final double size;
   final Color color;
-  final Color shadowColor; 
+  final Color shadowColor;
   final TextEditingController controller;
 
   const NumberButton({
@@ -190,7 +190,7 @@ class NumberButton extends StatelessWidget {
           ),
         ),
         onPressed: () {
-          if(controller.text.length <4){
+          if (controller.text.length < 4) {
             controller.text += number.toString();
           }
         },
