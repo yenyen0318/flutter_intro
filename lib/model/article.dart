@@ -4,7 +4,7 @@ class Article {
   Article(this.label, this.imageUrl);
 
   static List<Article> samples = [
-    Article('0', 'assets/images/0.png'),
+    Article('0 我是超級長長長長長長長長長長長長長長長長長長長長長長長長長長長長長長長長長長長長長長長長標題', 'assets/images/0.png'),
     Article('1', 'assets/images/1.png'),
     Article('2', 'assets/images/2.png'),
     Article('3', 'assets/images/3.png'),

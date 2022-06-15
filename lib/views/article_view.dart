@@ -25,10 +25,12 @@ class ArticlePageState extends State<ArticlePage> {
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
+                  Navigator.push(
+                    context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return  ArticleDetailPage(article: Article.samples[index]);
+                        return ArticleDetailPage(
+                            article: Article.samples[index]);
                       },
                     ),
                   );
@@ -53,10 +55,12 @@ Widget buildArticleCard(Article article) {
             const SizedBox(
               width: 20.0,
             ),
-            Text(article.label,
-                style: const TextStyle(
-                  fontSize: 20.0,
-                )),
+            Flexible(
+              child: Text(article.label,
+                  style: const TextStyle(
+                    fontSize: 20.0,
+                  )),
+            )
           ],
         ),
       ));
