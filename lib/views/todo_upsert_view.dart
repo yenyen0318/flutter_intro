@@ -101,10 +101,6 @@ class _UpsertTodoListState extends State<UpsertTodoList> {
                 ),
                 GradientButton(
                   text: const Text("儲存"),
-                  gradientColors: const [
-                    Color.fromARGB(255, 106, 131, 176),
-                    Color.fromRGBO(199, 136, 157, 1)
-                  ],
                   icon: const Icon(Icons.add),
                   onPressed: () {
                     setState(() {

@@ -56,10 +56,6 @@ class AboutPage extends StatelessWidget {
                     'SQLite',
                     'RMQ'
                   ],
-                  gradientColors: [
-                    Color.fromARGB(255, 106, 131, 176),
-                    Color.fromRGBO(199, 136, 157, 1)
-                  ],
                 ),
               ),
               const ListTile(

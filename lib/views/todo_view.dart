@@ -31,10 +31,6 @@ class _TodoListPageState extends State<TodoListPage> {
     return Container(
       child: Scaffold(
           appBar: GradientAppBar(
-            gradientColors: const [
-              Color.fromARGB(255, 106, 131, 176),
-              Color.fromRGBO(199, 136, 157, 1)
-            ],
             text: widget.title,
             actions: [
               IconButton(
@@ -63,10 +59,6 @@ class _TodoListPageState extends State<TodoListPage> {
             icon: const Icon(
               Icons.add,
             ),
-            gradientColors: const [
-              Color.fromARGB(255, 106, 131, 176),
-              Color.fromRGBO(199, 136, 157, 1)
-            ],
             onPressed: () {
               _showTodoItemBottomSheet(null, TodoActionType.insert);
             },

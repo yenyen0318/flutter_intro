@@ -24,10 +24,6 @@ class MyHomePage extends StatelessWidget {
             UserAccountsDrawerHeader(
                 accountName: const GradientText(
                   text: 'CHEN YEN YEN',
-                  gradientColors: [
-                    Color.fromARGB(255, 106, 131, 176),
-                    Color.fromRGBO(199, 136, 157, 1)
-                  ],
                 ),
                 accountEmail: const Text(
                   "janis03050055@gmail.com",

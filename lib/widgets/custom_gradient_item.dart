@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class GradientAppBar extends StatelessWidget with PreferredSizeWidget {
   const GradientAppBar({
     Key? key,
-    required this.gradientColors,
+    this.gradientColors = const [Color.fromARGB(255, 106, 131, 176),Color.fromRGBO(199, 136, 157, 1)],
     required this.text,
     this.actions,
   }) : super(key: key);
@@ -38,7 +38,7 @@ class GradientText extends StatelessWidget {
   const GradientText({
     Key? key,
     required this.text,
-    required this.gradientColors,
+    this.gradientColors = const [Color.fromARGB(255, 106, 131, 176),Color.fromRGBO(199, 136, 157, 1)],
   }) : super(key: key);
 
   @override
@@ -73,7 +73,7 @@ class GradientChips extends StatelessWidget {
   const GradientChips({
     Key? key,
     required this.items,
-    required this.gradientColors,
+    this.gradientColors = const [Color.fromARGB(255, 106, 131, 176),Color.fromRGBO(199, 136, 157, 1)],
   }) : super(key: key);
 
   @override
@@ -101,7 +101,7 @@ class GradientChip extends StatelessWidget {
   const GradientChip({
     Key? key,
     required this.text,
-    required this.gradientColors,
+    this.gradientColors = const [Color.fromARGB(255, 106, 131, 176),Color.fromRGBO(199, 136, 157, 1)],
   }) : super(key: key);
 
   @override
@@ -131,7 +131,7 @@ class GradientFloatingActionButton extends StatelessWidget {
   const GradientFloatingActionButton({
     Key? key,
     required this.icon,
-    required this.gradientColors,
+    this.gradientColors = const [Color.fromARGB(255, 106, 131, 176),Color.fromRGBO(199, 136, 157, 1)],
     required this.onPressed,
   }) : super(key: key);
 
@@ -164,7 +164,7 @@ class GradientButton extends StatelessWidget {
     Key? key,
     required this.icon,
     required this.text,
-    required this.gradientColors,
+    this.gradientColors = const [Color.fromARGB(255, 106, 131, 176),Color.fromRGBO(199, 136, 157, 1)],
     required this.onPressed,
   }) : super(key: key);
 

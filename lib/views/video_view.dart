@@ -58,10 +58,6 @@ class _VideoPageState extends State<VideoPage>
       appBar: MediaQuery.of(context).orientation == Orientation.landscape
           ? null
           : GradientAppBar(
-              gradientColors: const [
-                Color.fromARGB(255, 106, 131, 176),
-                Color.fromRGBO(199, 136, 157, 1)
-              ],
               text: widget.title,
             ),
       body: FutureBuilder(

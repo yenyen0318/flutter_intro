@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_arc_text/flutter_arc_text.dart';
-import 'package:intro/main.dart';
 import 'package:intro/views/home_view.dart';
 import 'package:intro/widgets/custom_gradient_item.dart';
 import 'package:intro/widgets/custom_num_pad.dart';
