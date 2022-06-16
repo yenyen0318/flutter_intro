@@ -10,6 +10,7 @@ Using flutter to create my intro page. This is my first time writing if you find
 4. [intl](https://pub.dev/packages/intl/)
 5. [flutter_launcher_icons](https://pub.dev/packages/flutter_launcher_icons)
 6. [video_player](https://pub.dev/packages/video_player)
+7. [google_fonts](https://pub.dev/packages/google_fonts)
 
 ## References
 1. [File and Folder structure in Flutter](https://medium.com/flutter-community/file-and-folder-structure-in-flutter-967b8be3155e)
@@ -22,3 +23,4 @@ Using flutter to create my intro page. This is my first time writing if you find
 7. [show/hide status bar](https://stackoverflow.com/questions/69326384/setenabledsystemuioverlays-is-deprecated-and-shouldnt-be-used-migrate-to-seten)
 8. [Sliding animation to bottom in flutter](https://stackoverflow.com/questions/53278792/sliding-animation-to-bottom-in-flutter)
 9. [drag a widget](https://stackoverflow.com/questions/65977699/how-to-create-a-movable-widget-in-flutter-such-that-is-stays-at-the-position-it)
+10. [Flutter Apprentice](https://morioh.com/p/d04bee856437?fbclid=IwAR1TUnl1OQy_pJZBnItpihsT2BKeswDC94KsjENC5ni35VXj98bYOjgfiHk)
