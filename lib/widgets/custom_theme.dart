@@ -39,15 +39,13 @@ class SpecialTheme {
   );
 
   static ListTileThemeData lightListTileTheme = ListTileThemeData(
-    iconColor: Colors.black38,
-    selectedColor: Color.fromARGB(246, 234, 232, 232)
-  );
+      iconColor: Colors.black38,
+      selectedColor: Color.fromARGB(246, 234, 232, 232));
 
   static ListTileThemeData darkListTileTheme = ListTileThemeData(
-    iconColor: Colors.white,
-    textColor: Colors.white,
-    selectedColor: Colors.black54
-  );
+      iconColor: Colors.white,
+      textColor: Colors.white,
+      selectedColor: Colors.black54);
 
   static ThemeData light() {
     return ThemeData(
@@ -59,17 +57,32 @@ class SpecialTheme {
           },
         ),
       ),
+      appBarTheme: AppBarTheme(
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.grey[900],
+      ),
       listTileTheme: lightListTileTheme,
       textTheme: lightTextTheme,
+      switchTheme: SwitchThemeData(
+          thumbColor: MaterialStateProperty.all<Color>(Colors.white),
+          trackColor: MaterialStateProperty.all<Color>(Colors.black12),
+        )
     );
   }
 
   static ThemeData dark() {
     return ThemeData(
-      brightness: Brightness.dark,
-      backgroundColor: Colors.black87,
-      listTileTheme: darkListTileTheme,
-      textTheme: darkTextTheme,
-    );
+        brightness: Brightness.dark,
+        appBarTheme: AppBarTheme(
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.grey[900],
+        ),
+        listTileTheme: darkListTileTheme,
+        textTheme: darkTextTheme,
+        switchTheme: SwitchThemeData(
+          thumbColor: MaterialStateProperty.all<Color>(Colors.white),
+          trackColor: MaterialStateProperty.all<Color>(
+              Color.fromARGB(255, 106, 131, 176)),
+        ));
   }
 }

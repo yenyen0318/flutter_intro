@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intro/widgets/tools.dart';
 import 'package:video_player/video_player.dart';
-import '../widgets/custom_gradient_item.dart';
 
 class VideoPage extends StatefulWidget {
   const VideoPage({Key? key, required this.title}) : super(key: key);
@@ -57,9 +57,7 @@ class _VideoPageState extends State<VideoPage>
               : Theme.of(context).backgroundColor,
       appBar: MediaQuery.of(context).orientation == Orientation.landscape
           ? null
-          : GradientAppBar(
-              text: widget.title,
-            ),
+          : SwitchAppBar(widget.title, null),
       body: FutureBuilder(
         future: _initializeVideoPlayerFuture,
         builder: (context, snapshot) {

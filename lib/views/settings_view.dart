@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intro/main.dart';
+import 'package:intro/widgets/tools.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('設定')),
+        appBar: SwitchAppBar('設定', null),
         body: ListView(children: [
           SwitchListTile(
             title: const Text('深色模式'),

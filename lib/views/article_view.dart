@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intro/model/article.dart';
 import 'package:intro/views/article_detail_view.dart';
+import 'package:intro/widgets/tools.dart';
 
 class ArticlePage extends StatefulWidget {
   @override
@@ -16,9 +17,7 @@ class ArticlePageState extends State<ArticlePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("學習筆記"),
-      ),
+      appBar: SwitchAppBar('學習筆記', null),
       body: SafeArea(
         child: ListView.builder(
             itemCount: Article.samples.length,

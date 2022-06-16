@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intro/views/login_view.dart';
+import 'package:intro/widgets/custom_theme.dart';
 
 void main() {
   runApp(const MyApp());

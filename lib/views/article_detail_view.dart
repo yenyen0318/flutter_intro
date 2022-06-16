@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intro/model/article.dart';
+import 'package:intro/widgets/tools.dart';
 
 class ArticleDetailPage extends StatefulWidget {
   final Article article;
@@ -14,9 +15,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.article.label),
-      ),
+      appBar: SwitchAppBar(widget.article.label, null),
       body: SafeArea(
         child: Column(
           children: <Widget>[

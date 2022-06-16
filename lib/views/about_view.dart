@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intro/widgets/custom_gradient_item.dart';
 import 'package:intro/widgets/timeline.dart';
+import 'package:intro/widgets/tools.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({Key? key}) : super(key: key);
@@ -8,10 +9,7 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const GradientAppBar(gradientColors: [
-          Color.fromARGB(255, 106, 131, 176),
-          Color.fromRGBO(199, 136, 157, 1)
-        ], text: '關於我'),
+        appBar: SwitchAppBar('關於我', null),
         backgroundColor: Colors.white,
         body: Container(
             width: MediaQuery.of(context).size.width,

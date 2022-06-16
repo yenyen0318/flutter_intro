@@ -7,6 +7,7 @@ import 'package:intro/views/video_view.dart';
 import 'package:intro/views/login_view.dart';
 import 'package:intro/views/todo_view.dart';
 import 'package:intro/widgets/custom_gradient_item.dart';
+import 'package:intro/widgets/tools.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -14,10 +15,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const GradientAppBar(gradientColors: [
-          Color.fromARGB(255, 106, 131, 176),
-          Color.fromRGBO(199, 136, 157, 1)
-        ], text: 'Hello'),
+        appBar: SwitchAppBar('Hello', null),
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,

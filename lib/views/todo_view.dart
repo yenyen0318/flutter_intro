@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intro/widgets/tools.dart';
 import '../database/TodoDB.dart';
 import '../model/todo.dart';
 import '../widgets/custom_gradient_item.dart';
@@ -30,9 +31,9 @@ class _TodoListPageState extends State<TodoListPage> {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-          appBar: GradientAppBar(
-            text: widget.title,
-            actions: [
+          appBar: SwitchAppBar(
+            widget.title,
+            [
               IconButton(
                   onPressed: () {
                     _deleteAllTodoList();
