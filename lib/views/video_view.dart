@@ -54,7 +54,7 @@ class _VideoPageState extends State<VideoPage>
       backgroundColor:
           MediaQuery.of(context).orientation == Orientation.landscape
               ? Colors.black
-              : Colors.white,
+              : Theme.of(context).backgroundColor,
       appBar: MediaQuery.of(context).orientation == Orientation.landscape
           ? null
           : GradientAppBar(

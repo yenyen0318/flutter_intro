@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intro/main.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -8,7 +9,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool _isLight = false;
+  bool _isDark = false;
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +17,18 @@ class _SettingsPageState extends State<SettingsPage> {
         appBar: AppBar(title: const Text('設定')),
         body: ListView(children: [
           SwitchListTile(
-            title: const Text('主題'),
-            value: _isLight,
+            title: const Text('深色模式'),
+            value: _isDark,
             onChanged: (bool value) {
               setState(() {
-                _isLight = value;
+                _isDark = value;
+                MyApp.themeNotifier.value =
+                    MyApp.themeNotifier.value == ThemeMode.light
+                        ? ThemeMode.dark
+                        : ThemeMode.light;
               });
             },
-            secondary: _isLight ? Icon(Icons.light_mode) : Icon(Icons.dark_mode),
+            secondary: Icon(Icons.dark_mode),
           ),
         ]));
   }

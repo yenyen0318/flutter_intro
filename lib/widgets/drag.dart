@@ -8,7 +8,7 @@ class StatefulDragArea extends StatefulWidget {
   const StatefulDragArea({
     Key? key, 
     required this.child, 
-    this.backgroundColor = Colors.yellow,
+    this.backgroundColor = Colors.transparent,
     this.onDragEnd,
   }) : super(key: key);
 
