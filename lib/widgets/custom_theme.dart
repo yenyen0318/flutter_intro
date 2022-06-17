@@ -49,25 +49,26 @@ class SpecialTheme {
 
   static ThemeData light() {
     return ThemeData(
-      brightness: Brightness.light,
-      checkboxTheme: CheckboxThemeData(
-        fillColor: MaterialStateColor.resolveWith(
-          (states) {
-            return Colors.black;
-          },
+        brightness: Brightness.light,
+        checkboxTheme: CheckboxThemeData(
+          fillColor: MaterialStateColor.resolveWith(
+            (states) {
+              return Colors.black;
+            },
+          ),
         ),
-      ),
-      appBarTheme: AppBarTheme(
-        foregroundColor: Colors.white,
-        backgroundColor: Colors.grey[900],
-      ),
-      listTileTheme: lightListTileTheme,
-      textTheme: lightTextTheme,
-      switchTheme: SwitchThemeData(
+        appBarTheme: AppBarTheme(
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.grey[900],
+        ),
+        listTileTheme: lightListTileTheme,
+        textTheme: lightTextTheme,
+        switchTheme: SwitchThemeData(
           thumbColor: MaterialStateProperty.all<Color>(Colors.white),
           trackColor: MaterialStateProperty.all<Color>(Colors.black12),
-        )
-    );
+        ),
+        textSelectionTheme: TextSelectionThemeData(
+            selectionColor: Color.fromARGB(255, 106, 131, 176)));
   }
 
   static ThemeData dark() {
@@ -83,7 +84,9 @@ class SpecialTheme {
           thumbColor: MaterialStateProperty.all<Color>(Colors.white),
           trackColor: MaterialStateProperty.all<Color>(
               Color.fromARGB(255, 106, 131, 176)),
-        ));
+        ),
+        textSelectionTheme: TextSelectionThemeData(
+            selectionColor: Color.fromARGB(255, 106, 131, 176)));
   }
 }
 
@@ -91,7 +94,8 @@ extension CustomColorScheme on ColorScheme {
   Color get numpadButtonColor => isDarkMode() ? Colors.black54 : Colors.white;
   Color get ArcInfoTextColor => isDarkMode() ? Colors.white : Colors.black87;
   Color get numpadInputColor => isDarkMode() ? Colors.white : Colors.black54;
-
+  Color get maskColor => isDarkMode() ? Colors.black : Colors.white;
+  ImageProvider get typeSettingDemoBackgroundImage => isDarkMode() ? AssetImage('assets/images/cat2.jpg') : AssetImage('assets/images/cat.jpg');
   bool isDarkMode() {
     return brightness == Brightness.dark;
   }

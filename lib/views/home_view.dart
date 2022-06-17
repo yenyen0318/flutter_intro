@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intro/views/about_view.dart';
 import 'package:intro/views/article_view.dart';
 import 'package:intro/views/drag_play_view.dart';
+import 'package:intro/views/type_setting_view.dart';
 import 'package:intro/views/settings_view.dart';
 import 'package:intro/views/video_view.dart';
 import 'package:intro/views/login_view.dart';
@@ -73,7 +74,8 @@ class MyHomePage extends StatelessWidget {
                     Icons.favorite,
                     color: Theme.of(context).listTileTheme.iconColor,
                   ),
-                  backgroundColor: Theme.of(context).listTileTheme.selectedColor,
+                  backgroundColor:
+                      Theme.of(context).listTileTheme.selectedColor,
                   textColor: Theme.of(context).listTileTheme.textColor,
                   iconColor: Theme.of(context).listTileTheme.iconColor,
                   collapsedBackgroundColor: Colors.transparent,
@@ -107,6 +109,21 @@ class MyHomePage extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => const VideoPage(
                                       title: '影片播放',
+                                    )),
+                          );
+                        }),
+                    ListTile(
+                        leading: const Icon(
+                          Icons.science,
+                          color: Colors.transparent,
+                        ),
+                        title: const Text('文章模板'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const TypeSettingPage(
+                                      title: '文章模板',
                                     )),
                           );
                         }),
