@@ -10,7 +10,6 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: SwitchAppBar('關於我', null),
-        backgroundColor: Colors.white,
         body: Container(
             width: MediaQuery.of(context).size.width,
             alignment: Alignment.topCenter,

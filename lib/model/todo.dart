@@ -22,7 +22,7 @@ class TodoItem extends StatelessWidget {
     if (!checked) return null;
 
     return const TextStyle(
-      color: Colors.black54,
+      color: Colors.grey,
       decoration: TextDecoration.lineThrough,
     );
   }
