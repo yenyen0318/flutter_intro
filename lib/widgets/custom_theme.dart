@@ -86,3 +86,13 @@ class SpecialTheme {
         ));
   }
 }
+
+extension CustomColorScheme on ColorScheme {
+  Color get numpadButtonColor => isDarkMode() ? Colors.black54 : Colors.white;
+  Color get ArcInfoTextColor => isDarkMode() ? Colors.white : Colors.black87;
+  Color get numpadInputColor => isDarkMode() ? Colors.white : Colors.black54;
+
+  bool isDarkMode() {
+    return brightness == Brightness.dark;
+  }
+}

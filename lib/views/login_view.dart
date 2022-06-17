@@ -4,6 +4,7 @@ import 'package:flutter_arc_text/flutter_arc_text.dart';
 import 'package:intro/views/home_view.dart';
 import 'package:intro/widgets/custom_gradient_item.dart';
 import 'package:intro/widgets/custom_num_pad.dart';
+import 'package:intro/widgets/custom_theme.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -12,7 +13,6 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Container(
         width: MediaQuery.of(context).size.width,
         alignment: Alignment.bottomCenter,
@@ -20,14 +20,16 @@ class LoginPage extends StatelessWidget {
           shrinkWrap: true,
           children: <Widget>[
             //自介圖片
-            const CircleAvatar(
+            CircleAvatar(
               radius: 86.0,
               backgroundImage: AssetImage('assets/images/cat.jpg'),
               backgroundColor: Colors.transparent,
               child: ArcText(
                 radius: 100,
                 text: 'Hello, my name is Yen Yen! Welcome to my App.',
-                textStyle: TextStyle(fontSize: 18, color: Colors.black),
+                textStyle: TextStyle(
+                    fontSize: 18,
+                    color: Theme.of(context).colorScheme.ArcInfoTextColor),
                 startAngle: -pi / 3,
               ),
             ),
@@ -48,9 +50,9 @@ class LoginPage extends StatelessWidget {
                   maxLines: 1,
                   autofocus: true,
                   keyboardType: TextInputType.none,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 40,
-                    color: Colors.black54,
+                    color:  Theme.of(context).colorScheme.numpadInputColor,
                     letterSpacing: 10.0, //文字間距
                   ),
                   decoration: const InputDecoration(
@@ -78,7 +80,8 @@ class LoginPage extends StatelessWidget {
                 Color.fromARGB(255, 106, 131, 176),
                 Color.fromRGBO(199, 136, 157, 1),
               ],
-              iconColor: Colors.white,
+              numTextColor: Theme.of(context).colorScheme.numpadButtonColor,
+              iconColor: Theme.of(context).colorScheme.numpadButtonColor,
               numController: _pinCodeController,
               onDelete: () {
                 _pinCodeController.text = _pinCodeController.text

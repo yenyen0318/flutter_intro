@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class NumPad extends StatelessWidget {
   final double buttonSize; //按鈕文字大小
   final Color buttonColor; //按鈕顏色
+  final Color numTextColor; //按鈕上數字顏色
   final Color iconColor; //非數字按鈕顏色
   final List<Color> backgroundColor; //鍵盤背景顏色
   final Color shadowColor; //按鈕陰影顏色
@@ -18,6 +19,7 @@ class NumPad extends StatelessWidget {
     this.iconColor = Colors.amber,
     this.shadowColor = Colors.transparent,
     this.borderRadius = 50,
+    this.numTextColor = Colors.white,
     required this.backgroundColor,
     required this.numController,
     required this.onDelete,
@@ -52,6 +54,7 @@ class NumPad extends StatelessWidget {
                 size: buttonSize,
                 color: buttonColor,
                 shadowColor: shadowColor,
+                textColor: numTextColor, 
                 controller: numController,
               ),
               NumberButton(
@@ -59,6 +62,7 @@ class NumPad extends StatelessWidget {
                 size: buttonSize,
                 color: buttonColor,
                 shadowColor: shadowColor,
+                textColor: numTextColor, 
                 controller: numController,
               ),
               NumberButton(
@@ -66,6 +70,7 @@ class NumPad extends StatelessWidget {
                 size: buttonSize,
                 color: buttonColor,
                 shadowColor: shadowColor,
+                textColor: numTextColor, 
                 controller: numController,
               ),
             ],
@@ -79,6 +84,7 @@ class NumPad extends StatelessWidget {
                 size: buttonSize,
                 color: buttonColor,
                 shadowColor: shadowColor,
+                textColor: numTextColor, 
                 controller: numController,
               ),
               NumberButton(
@@ -86,6 +92,7 @@ class NumPad extends StatelessWidget {
                 size: buttonSize,
                 color: buttonColor,
                 shadowColor: shadowColor,
+                textColor: numTextColor, 
                 controller: numController,
               ),
               NumberButton(
@@ -93,6 +100,7 @@ class NumPad extends StatelessWidget {
                 size: buttonSize,
                 color: buttonColor,
                 shadowColor: shadowColor,
+                textColor: numTextColor, 
                 controller: numController,
               ),
             ],
@@ -106,6 +114,7 @@ class NumPad extends StatelessWidget {
                 size: buttonSize,
                 color: buttonColor,
                 shadowColor: shadowColor,
+                textColor: numTextColor, 
                 controller: numController,
               ),
               NumberButton(
@@ -113,6 +122,7 @@ class NumPad extends StatelessWidget {
                 size: buttonSize,
                 color: buttonColor,
                 shadowColor: shadowColor,
+                textColor: numTextColor, 
                 controller: numController,
               ),
               NumberButton(
@@ -120,6 +130,7 @@ class NumPad extends StatelessWidget {
                 size: buttonSize,
                 color: buttonColor,
                 shadowColor: shadowColor,
+                textColor: numTextColor, 
                 controller: numController,
               ),
             ],
@@ -141,6 +152,7 @@ class NumPad extends StatelessWidget {
                 size: buttonSize,
                 color: buttonColor,
                 shadowColor: shadowColor,
+                textColor: numTextColor, 
                 controller: numController,
               ),
               IconButton(
@@ -164,6 +176,7 @@ class NumberButton extends StatelessWidget {
   final int number;
   final double size;
   final Color color;
+  final Color textColor;
   final Color shadowColor;
   final TextEditingController controller;
 
@@ -173,7 +186,8 @@ class NumberButton extends StatelessWidget {
     required this.number,
     required this.size,
     required this.color,
-    required this.controller,
+    required this.controller, 
+    this.textColor = Colors.white,
   }) : super(key: key);
 
   @override
@@ -197,8 +211,8 @@ class NumberButton extends StatelessWidget {
         child: Center(
           child: Text(
             number.toString(),
-            style: const TextStyle(
-                fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),
+            style: TextStyle(
+                fontWeight: FontWeight.bold, color: textColor, fontSize: 30),
           ),
         ),
       ),
