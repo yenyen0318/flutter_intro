@@ -127,7 +127,7 @@ class CircleImage extends StatelessWidget {
   }
 }
 
-class AuthorCard extends StatelessWidget {
+class AuthorCard extends StatefulWidget {
   final String authorName;
   final String title;
   final ImageProvider imageProvider;
@@ -139,6 +139,13 @@ class AuthorCard extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<AuthorCard> createState() => _AuthorCardState();
+}
+
+class _AuthorCardState extends State<AuthorCard> {
+  bool _isFavorited = false;
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
@@ -146,29 +153,34 @@ class AuthorCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(children: [
-            CircleImage(imageProvider: imageProvider, imageRadius: 28),
+            CircleImage(imageProvider: widget.imageProvider, imageRadius: 28),
             const SizedBox(width: 8),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  authorName,
+                  widget.authorName,
                   style: Theme.of(context).textTheme.headline6,
                 ),
                 Text(
-                  title,
+                  widget.title,
                   style: Theme.of(context).textTheme.bodyText2,
                 )
               ],
             ),
           ]),
           IconButton(
-              icon: const Icon(Icons.favorite_border),
+              icon: Icon(_isFavorited ? Icons.favorite : Icons.favorite_border),
               iconSize: 30,
-              color: Colors.grey[400],
+              color: Colors.red[400],
               onPressed: () {
-                const snackBar = SnackBar(content: Text('點擊愛心'));
+                SnackBar snackBar = SnackBar(
+                    duration: Duration(milliseconds: 300),
+                    content: Text(_isFavorited ? '移除愛心' : '點擊愛心'));
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                setState(() {
+                  _isFavorited = !_isFavorited;
+                });
               }),
         ],
       ),
@@ -185,7 +197,9 @@ class TypeSettingCard3 extends StatelessWidget {
         constraints: const BoxConstraints.expand(width: 350, height: 450),
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: Theme.of(context).colorScheme.typeSettingDemoBackgroundImage, fit: BoxFit.cover),
+              image:
+                  Theme.of(context).colorScheme.typeSettingDemoBackgroundImage,
+              fit: BoxFit.cover),
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
         ),
         child: Stack(
@@ -203,8 +217,7 @@ class TypeSettingCard3 extends StatelessWidget {
                 children: [
                   const Icon(Icons.book, color: Colors.grey, size: 40),
                   const SizedBox(height: 8),
-                  Text('透明遮罩及標籤',
-                      style: Theme.of(context).textTheme.headline4),
+                  Text('透明遮罩及標籤', style: Theme.of(context).textTheme.headline4),
                   const SizedBox(height: 30),
                 ],
               ),
@@ -213,7 +226,15 @@ class TypeSettingCard3 extends StatelessWidget {
               child: Wrap(
                   alignment: WrapAlignment.start,
                   spacing: 12,
-                  children: ['Healthy', 'aaa', 'bbbbbbb', 'ccccccccccc', 'dddddddd', 'eeeeeeeeee', 'wwwwwwwwwwwwwwwwwwwww'].map((item) {
+                  children: [
+                    'Healthy',
+                    'aaa',
+                    'bbbbbbb',
+                    'ccccccccccc',
+                    'dddddddd',
+                    'eeeeeeeeee',
+                    'wwwwwwwwwwwwwwwwwwwww'
+                  ].map((item) {
                     return Chip(
                       label: Text(item,
                           style: Theme.of(context).textTheme.bodyText1),
