@@ -3,11 +3,28 @@ import 'package:intro/views/home_view.dart';
 import 'package:intro/widgets/custom_gradient_item.dart';
 import 'package:intro/widgets/custom_num_pad.dart';
 import 'package:intro/widgets/custom_theme.dart';
+import 'package:provider/provider.dart';
 
+import '../model/intro_pages.dart';
+import '../navigation/app_state_manager.dart';
 import '../widgets/circleInfo.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  static MaterialPage page() {
+    return MaterialPage(
+      name: IntroPages.loginPath,
+      key: ValueKey(IntroPages.loginPath),
+      child: LoginPage(),
+    );
+  }
+
   LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final _pinCodeController = TextEditingController();
 
   @override
@@ -40,7 +57,7 @@ class LoginPage extends StatelessWidget {
                   keyboardType: TextInputType.none,
                   style: TextStyle(
                     fontSize: 40,
-                    color:  Theme.of(context).colorScheme.numpadInputColor,
+                    color: Theme.of(context).colorScheme.numpadInputColor,
                     letterSpacing: 10.0, //文字間距
                   ),
                   decoration: const InputDecoration(
@@ -79,11 +96,8 @@ class LoginPage extends StatelessWidget {
                 debugPrint('Your code: ${_pinCodeController.text}');
                 if (_pinCodeController.text == '0519') {
                   _pinCodeController.text = '';
-                  Navigator.pushReplacement(
-                    //點擊自帶返回建直接跳出APP
-                    context,
-                    MaterialPageRoute(builder: (context) => const MyHomePage()),
-                  );
+                  Provider.of<AppStateManager>(context, listen: false)
+                      .login('mockUsername', 'mockPassword');
                 } else {
                   _pinCodeController.text = '';
                   showDialog(

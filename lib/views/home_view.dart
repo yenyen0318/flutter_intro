@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intro/model/intro_pages.dart';
 import 'package:intro/views/about_view.dart';
 import 'package:intro/views/article_view.dart';
 import 'package:intro/views/drag_play_view.dart';
@@ -10,9 +11,22 @@ import 'package:intro/views/todo_view.dart';
 import 'package:intro/widgets/custom_gradient_item.dart';
 import 'package:intro/widgets/tools.dart';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  static MaterialPage page() {
+    return MaterialPage(
+      name: IntroPages.home,
+      key: ValueKey(IntroPages.home),
+      child: const MyHomePage(),
+    );
+  }
+
   const MyHomePage({Key? key}) : super(key: key);
 
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
