@@ -68,7 +68,9 @@ class SpecialTheme {
           trackColor: MaterialStateProperty.all<Color>(Colors.black12),
         ),
         textSelectionTheme: TextSelectionThemeData(
-            selectionColor: Color.fromARGB(255, 106, 131, 176)));
+            selectionColor: Color.fromARGB(255, 106, 131, 176)),
+        progressIndicatorTheme:
+            ProgressIndicatorThemeData(color: Colors.pink.shade100));
   }
 
   static ThemeData dark() {
@@ -86,7 +88,9 @@ class SpecialTheme {
               Color.fromARGB(255, 106, 131, 176)),
         ),
         textSelectionTheme: TextSelectionThemeData(
-            selectionColor: Color.fromARGB(255, 106, 131, 176)));
+            selectionColor: Color.fromARGB(255, 106, 131, 176)),
+        progressIndicatorTheme:
+            ProgressIndicatorThemeData(color: Colors.pink.shade100));
   }
 }
 
@@ -95,7 +99,9 @@ extension CustomColorScheme on ColorScheme {
   Color get ArcInfoTextColor => isDarkMode() ? Colors.white : Colors.black87;
   Color get numpadInputColor => isDarkMode() ? Colors.white : Colors.black54;
   Color get maskColor => isDarkMode() ? Colors.black : Colors.white;
-  ImageProvider get typeSettingDemoBackgroundImage => isDarkMode() ? AssetImage('assets/images/cat2.jpg') : AssetImage('assets/images/cat.jpg');
+  ImageProvider get typeSettingDemoBackgroundImage => isDarkMode()
+      ? AssetImage('assets/images/cat2.jpg')
+      : AssetImage('assets/images/cat.jpg');
   bool isDarkMode() {
     return brightness == Brightness.dark;
   }

@@ -1,10 +1,10 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter_arc_text/flutter_arc_text.dart';
 import 'package:intro/views/home_view.dart';
 import 'package:intro/widgets/custom_gradient_item.dart';
 import 'package:intro/widgets/custom_num_pad.dart';
 import 'package:intro/widgets/custom_theme.dart';
+
+import '../widgets/circleInfo.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -20,19 +20,7 @@ class LoginPage extends StatelessWidget {
           shrinkWrap: true,
           children: <Widget>[
             //自介圖片
-            CircleAvatar(
-              radius: 86.0,
-              backgroundImage: AssetImage('assets/images/cat.jpg'),
-              backgroundColor: Colors.transparent,
-              child: ArcText(
-                radius: 100,
-                text: 'Hello, my name is Yen Yen! Welcome to my App.',
-                textStyle: TextStyle(
-                    fontSize: 18,
-                    color: Theme.of(context).colorScheme.ArcInfoTextColor),
-                startAngle: -pi / 3,
-              ),
-            ),
+            CircleInfo(),
 
             const SizedBox(height: 50),
 
