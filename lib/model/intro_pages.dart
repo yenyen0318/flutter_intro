@@ -3,4 +3,5 @@ class IntroPages {
   static String loginPath = '/login';
   static String home = '/';
   static String setting = '/setting';
+  static String article = '/article';
 }

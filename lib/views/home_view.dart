@@ -67,10 +67,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   leading: const Icon(Icons.article),
                   title: const Text('學習筆記'),
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ArticlePage()),
-                    );
+                    Provider.of<AppStateManager>(context, listen: false)
+                        .TapOnArticle(true);
                   }),
               ListTile(
                   leading: const Icon(Icons.science),

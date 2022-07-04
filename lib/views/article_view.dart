@@ -3,7 +3,17 @@ import 'package:intro/model/article.dart';
 import 'package:intro/views/article_detail_view.dart';
 import 'package:intro/widgets/tools.dart';
 
+import '../model/intro_pages.dart';
+
 class ArticlePage extends StatefulWidget {
+  static MaterialPage page() {
+    debugPrint('ArticlePage');
+    return MaterialPage(
+      name: IntroPages.loginPath,
+      key: ValueKey(IntroPages.loginPath),
+      child: ArticlePage(),
+    );
+  }
   @override
   State<StatefulWidget> createState() => ArticlePageState();
 }

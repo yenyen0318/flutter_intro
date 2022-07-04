@@ -7,11 +7,13 @@ class AppStateManager extends ChangeNotifier {
   bool _loggedIn = false;
   bool _isSecret = true;
   bool _didSetting = false;
+  bool _didArticle = false;
 
   bool get isInitialized => _initialized;
   bool get isLoggedIn => _loggedIn;
   bool get isSecret => _isSecret;
   bool get didSetting => _didSetting;
+  bool get didArticle => _didArticle;
 
   //初始化APP
   void initializeApp() {
@@ -47,6 +49,12 @@ class AppStateManager extends ChangeNotifier {
   //進入設定頁
   void TapOnSettings(bool selected){
     _didSetting = selected;
+    notifyListeners();
+  }
+
+  //進入設定頁
+  void TapOnArticle(bool selected){
+    _didArticle = selected;
     notifyListeners();
   }
 }

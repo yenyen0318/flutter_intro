@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intro/model/intro_pages.dart';
+import 'package:intro/views/article_view.dart';
 import 'package:intro/views/home_view.dart';
 import 'package:intro/views/login_view.dart';
 import 'package:intro/views/settings_view.dart';
@@ -41,6 +42,10 @@ class AppRouter extends RouterDelegate
       appStateManager.TapOnSettings(false);
     }
 
+    if (route.settings.name == IntroPages.article) {
+      appStateManager.TapOnArticle(false);
+    }
+
     return true;
   }
 
@@ -56,6 +61,8 @@ class AppRouter extends RouterDelegate
           MyHomePage.page(),
           if (appStateManager.didSetting) ...[
             SettingsPage.page(appStateManager.isSecret),
+          ] else if (appStateManager.didArticle) ...[
+            ArticlePage.page(),
           ] else
             ...[]
         ]
