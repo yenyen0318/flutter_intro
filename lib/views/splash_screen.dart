@@ -7,6 +7,7 @@ import '../widgets/circleInfo.dart';
 
 class SplashPage extends StatefulWidget {
   static MaterialPage page() {
+    debugPrint('SplashPage');
     return MaterialPage(
       name: IntroPages.splashPath,
       key: ValueKey(IntroPages.splashPath),

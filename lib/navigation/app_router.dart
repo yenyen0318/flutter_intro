@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:intro/model/intro_pages.dart';
 import 'package:intro/views/home_view.dart';
 import 'package:intro/views/login_view.dart';
+import 'package:intro/views/settings_view.dart';
 import 'package:intro/views/splash_screen.dart';
 import 'app_state_manager.dart';
 
-// 1
 class AppRouter extends RouterDelegate
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {
-  // 2
   @override
   final GlobalKey<NavigatorState> navigatorKey;
-  // 3
   final AppStateManager appStateManager;
 
   AppRouter({required this.appStateManager})
@@ -29,13 +28,7 @@ class AppRouter extends RouterDelegate
     return Navigator(
       key: navigatorKey,
       onPopPage: _handlePopPage,
-      pages: [
-        if (!appStateManager.isInitialized) SplashPage.page(),
-        if (appStateManager.isInitialized && !appStateManager.isLoggedIn)
-          LoginPage.page(),
-        if (appStateManager.isLoggedIn)
-          MyHomePage.page(),
-      ],
+      pages: List.of(_pages()),
     );
   }
 
@@ -43,7 +36,30 @@ class AppRouter extends RouterDelegate
     if (!route.didPop(result)) {
       return false;
     }
+
+    if (route.settings.name == IntroPages.setting) {
+      appStateManager.TapOnSettings(false);
+    }
+
     return true;
+  }
+
+  List<Page<dynamic>> _pages(){
+    return [
+        if (!appStateManager.isInitialized) ...[
+          SplashPage.page(),
+        ] else if (appStateManager.isInitialized &&
+            !appStateManager.isLoggedIn &&
+            appStateManager.isSecret) ...[
+          LoginPage.page(),
+        ] else ...[
+          MyHomePage.page(),
+          if (appStateManager.didSetting) ...[
+            SettingsPage.page(appStateManager.isSecret),
+          ] else
+            ...[]
+        ]
+      ];
   }
 
   @override

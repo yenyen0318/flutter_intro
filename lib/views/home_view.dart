@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:intro/model/intro_pages.dart';
+import 'package:intro/navigation/app_state_manager.dart';
 import 'package:intro/views/about_view.dart';
 import 'package:intro/views/article_view.dart';
 import 'package:intro/views/drag_play_view.dart';
 import 'package:intro/views/type_setting_view.dart';
-import 'package:intro/views/settings_view.dart';
 import 'package:intro/views/video_view.dart';
 import 'package:intro/views/login_view.dart';
 import 'package:intro/views/todo_view.dart';
 import 'package:intro/widgets/custom_gradient_item.dart';
 import 'package:intro/widgets/tools.dart';
+import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
   static MaterialPage page() {
+    debugPrint('MyHomePage');
     return MaterialPage(
       name: IntroPages.home,
       key: ValueKey(IntroPages.home),
@@ -172,10 +174,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   leading: const Icon(Icons.settings),
                   title: const Text('設定'),
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SettingsPage()),
-                    );
+                    Provider.of<AppStateManager>(context, listen: false)
+                        .TapOnSettings(true);
+                  }),
+              ListTile(
+                  leading: const Icon(Icons.settings),
+                  title: const Text('登出'),
+                  onTap: () {
+                    Provider.of<AppStateManager>(context, listen: false)
+                        .logout();
                   }),
             ],
           ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intro/views/home_view.dart';
 import 'package:intro/widgets/custom_gradient_item.dart';
 import 'package:intro/widgets/custom_num_pad.dart';
 import 'package:intro/widgets/custom_theme.dart';
@@ -11,6 +10,7 @@ import '../widgets/circleInfo.dart';
 
 class LoginPage extends StatefulWidget {
   static MaterialPage page() {
+    debugPrint('LoginPage');
     return MaterialPage(
       name: IntroPages.loginPath,
       key: ValueKey(IntroPages.loginPath),
