@@ -20,6 +20,7 @@ class _VideoPageState extends State<VideoPage>
   static const platform = MethodChannel('samples.flutter.dev/battery');
   bool _isFullscreen = false;
   bool _isFitScreen = false;
+  bool _isPIPMode = false;
   bool _isMuted = false;
   double _speed = 1.0;
 
@@ -36,6 +37,13 @@ class _VideoPageState extends State<VideoPage>
 
     _initializeVideoPlayerFuture = _videoPlayerController.initialize();
     _videoPlayerController.setLooping(true);
+
+    platform.setMethodCallHandler((call) {
+      if (call.method == 'isInPictureInPictureMode') {
+        _isPIPMode = call.arguments;
+      }
+      return Future.value(true);
+    });
   }
 
   @override
@@ -88,190 +96,196 @@ class _VideoPageState extends State<VideoPage>
                           child: VideoPlayer(_videoPlayerController),
                         )),
                   ),
-                  //上方控制列
-                  Positioned(
-                    top: 0,
-                    right: 10,
-                    child: FadeTransition(
-                        opacity: _fadeInFadeOutAnimation,
-                        child: SizedBox(
-                          height: 50,
-                          //播放速度
-                          child: DropdownButtonHideUnderline(
-                            child: ButtonTheme(
-                              alignedDropdown: true,
-                              child: DropdownButton(
-                                style: const TextStyle(color: Colors.black),
-                                value: _speed,
-                                items: <double>[0.25, 0.5, 1.0, 2.0, 5.0]
-                                    .map((value) => DropdownMenuItem(
-                                          child: SizedBox(
-                                            child: Text(value.toString(),
-                                                textAlign: TextAlign.center),
-                                          ),
-                                          value: value,
-                                        ))
-                                    .toList(),
-                                onChanged: (double? newValue) {
-                                  _speed = newValue!;
-                                  _videoPlayerController
-                                      .setPlaybackSpeed(_speed);
-                                  setState(() {});
-                                },
-                              ),
-                            ),
-                          ),
-                        )),
-                  ),
-                  //下方控制列
-                  Positioned(
-                    bottom: 0,
-                    child: FadeTransition(
-                      opacity: _fadeInFadeOutAnimation,
-                      child: SizedBox(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width,
-                          child: Container(
-                            color: Colors.transparent,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: <Widget>[
-                                //暫停/播放
-                                Expanded(
-                                  child: IconButton(
-                                    icon: Icon(
-                                      _videoPlayerController.value.isPlaying
-                                          ? Icons.pause
-                                          : Icons.play_arrow,
-                                    ),
-                                    onPressed: () {
-                                      setState(() {
-                                        _videoPlayerController.value.isPlaying
-                                            ? _videoPlayerController.pause()
-                                            : _videoPlayerController.play();
-                                      });
-                                    },
-                                  ),
-                                ),
-                                //重複播放
-                                Expanded(
-                                  child: IconButton(
-                                    icon: _videoPlayerController.value.isLooping
-                                        ? Icon(Icons.repeat)
-                                        : Icon(Icons.lock),
-                                    onPressed: () {
-                                      setState(() {
-                                        _videoPlayerController.setLooping(
-                                            !_videoPlayerController
-                                                .value.isLooping);
-                                      });
-                                    },
-                                  ),
-                                ),
-                                //時間軸
-                                ValueListenableBuilder(
-                                  valueListenable: _videoPlayerController,
-                                  builder:
-                                      (context, VideoPlayerValue value, child) {
-                                    return Align(
-                                      alignment: Alignment.center,
-                                      child: AbsorbPointer(
-                                          child: SliderTheme(
-                                              child: Slider(
-                                                activeColor: Colors.black54,
-                                                inactiveColor: Colors.black26,
-                                                min: 0.0,
-                                                max: _videoPlayerController
-                                                    .value
-                                                    .duration
-                                                    .inMilliseconds
-                                                    .toDouble(),
-                                                value: value
-                                                    .position.inMilliseconds
-                                                    .toDouble(),
-                                                onChanged: (value) {},
-                                              ),
-                                              data: SliderTheme.of(context)
-                                                  .copyWith(
-                                                thumbShape: SliderComponentShape
-                                                    .noOverlay,
-                                              ))),
-                                    );
+                  if (!_isPIPMode) ...[
+                    Positioned(
+                      top: 0,
+                      right: 10,
+                      child: FadeTransition(
+                          opacity: _fadeInFadeOutAnimation,
+                          child: SizedBox(
+                            height: 50,
+                            //播放速度
+                            child: DropdownButtonHideUnderline(
+                              child: ButtonTheme(
+                                alignedDropdown: true,
+                                child: DropdownButton(
+                                  style: const TextStyle(color: Colors.black),
+                                  value: _speed,
+                                  items: <double>[0.25, 0.5, 1.0, 2.0, 5.0]
+                                      .map((value) => DropdownMenuItem(
+                                            child: SizedBox(
+                                              child: Text(value.toString(),
+                                                  textAlign: TextAlign.center),
+                                            ),
+                                            value: value,
+                                          ))
+                                      .toList(),
+                                  onChanged: (double? newValue) {
+                                    _speed = newValue!;
+                                    _videoPlayerController
+                                        .setPlaybackSpeed(_speed);
+                                    setState(() {});
                                   },
                                 ),
-                                //靜音
-                                Expanded(
-                                  child: IconButton(
-                                    icon: _isMuted
-                                        ? Icon(Icons.volume_off)
-                                        : Icon(Icons.volume_up),
-                                    onPressed: () {
-                                      _isMuted = !_isMuted;
-                                      if (_isMuted) {
-                                        _videoPlayerController.setVolume(0.0);
-                                      } else {
-                                        _videoPlayerController.setVolume(1.0);
-                                      }
-                                                            
-                                      setState(() {});
-                                    },
-                                  ),
-                                ),
-                                //影片大小
-                                (MediaQuery.of(context).orientation ==
-                                        Orientation.landscape
-                                    ? Expanded(
-                                      child: IconButton(
-                                          icon: Icon(Icons.fit_screen),
-                                          onPressed: () {
-                                            setState(() {
-                                              _isFitScreen = !_isFitScreen;
-                                            });
-                                          },
-                                        ),
-                                    )
-                                    : Container()),
-                                //全螢幕
-                                Expanded(
-                                  child: IconButton(
-                                    icon: Icon(Icons.fullscreen),
-                                    onPressed: () {
-                                      _isFullscreen = !_isFullscreen;
-                                      if (_isFullscreen) {
-                                        SystemChrome.setPreferredOrientations([
-                                          DeviceOrientation.landscapeRight,
-                                          DeviceOrientation.landscapeLeft,
-                                        ]);
-                                      } else {
-                                        SystemChrome.setPreferredOrientations([
-                                          DeviceOrientation.portraitDown,
-                                          DeviceOrientation.portraitUp,
-                                        ]);
-                                      }
-                                      setState(() {});
-                                    },
-                                  ),
-                                ),
-                                //子母畫面
-                                Expanded(
-                                  child: IconButton(
-                                    icon: Icon(Icons.featured_video),
-                                    onPressed: () async {
-                                      try {
-                                        await platform
-                                            .invokeMethod('showNativeView');
-                                      } on PlatformException catch (e) {
-                                        debugPrint(
-                                            "子母畫面執行失敗: '${e.message}'.");
-                                      }
-                                    },
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
                           )),
                     ),
-                  ),
+                    //下方控制列
+                    Positioned(
+                      bottom: 0,
+                      child: FadeTransition(
+                        opacity: _fadeInFadeOutAnimation,
+                        child: SizedBox(
+                            height: 50,
+                            width: MediaQuery.of(context).size.width,
+                            child: Container(
+                              color: Colors.transparent,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: <Widget>[
+                                  //暫停/播放
+                                  Expanded(
+                                    child: IconButton(
+                                      icon: Icon(
+                                        _videoPlayerController.value.isPlaying
+                                            ? Icons.pause
+                                            : Icons.play_arrow,
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          _videoPlayerController.value.isPlaying
+                                              ? _videoPlayerController.pause()
+                                              : _videoPlayerController.play();
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  //重複播放
+                                  Expanded(
+                                    child: IconButton(
+                                      icon:
+                                          _videoPlayerController.value.isLooping
+                                              ? Icon(Icons.repeat)
+                                              : Icon(Icons.lock),
+                                      onPressed: () {
+                                        setState(() {
+                                          _videoPlayerController.setLooping(
+                                              !_videoPlayerController
+                                                  .value.isLooping);
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  //時間軸
+                                  ValueListenableBuilder(
+                                    valueListenable: _videoPlayerController,
+                                    builder: (context, VideoPlayerValue value,
+                                        child) {
+                                      return Align(
+                                        alignment: Alignment.center,
+                                        child: AbsorbPointer(
+                                            child: SliderTheme(
+                                                child: Slider(
+                                                  activeColor: Colors.black54,
+                                                  inactiveColor: Colors.black26,
+                                                  min: 0.0,
+                                                  max: _videoPlayerController
+                                                      .value
+                                                      .duration
+                                                      .inMilliseconds
+                                                      .toDouble(),
+                                                  value: value
+                                                      .position.inMilliseconds
+                                                      .toDouble(),
+                                                  onChanged: (value) {},
+                                                ),
+                                                data: SliderTheme.of(context)
+                                                    .copyWith(
+                                                  thumbShape:
+                                                      SliderComponentShape
+                                                          .noOverlay,
+                                                ))),
+                                      );
+                                    },
+                                  ),
+                                  //靜音
+                                  Expanded(
+                                    child: IconButton(
+                                      icon: _isMuted
+                                          ? Icon(Icons.volume_off)
+                                          : Icon(Icons.volume_up),
+                                      onPressed: () {
+                                        _isMuted = !_isMuted;
+                                        if (_isMuted) {
+                                          _videoPlayerController.setVolume(0.0);
+                                        } else {
+                                          _videoPlayerController.setVolume(1.0);
+                                        }
+
+                                        setState(() {});
+                                      },
+                                    ),
+                                  ),
+                                  //影片大小
+                                  (MediaQuery.of(context).orientation ==
+                                          Orientation.landscape
+                                      ? Expanded(
+                                          child: IconButton(
+                                            icon: Icon(Icons.fit_screen),
+                                            onPressed: () {
+                                              setState(() {
+                                                _isFitScreen = !_isFitScreen;
+                                              });
+                                            },
+                                          ),
+                                        )
+                                      : Container()),
+                                  //全螢幕
+                                  Expanded(
+                                    child: IconButton(
+                                      icon: Icon(Icons.fullscreen),
+                                      onPressed: () {
+                                        _isFullscreen = !_isFullscreen;
+                                        if (_isFullscreen) {
+                                          SystemChrome
+                                              .setPreferredOrientations([
+                                            DeviceOrientation.landscapeRight,
+                                            DeviceOrientation.landscapeLeft,
+                                          ]);
+                                        } else {
+                                          SystemChrome
+                                              .setPreferredOrientations([
+                                            DeviceOrientation.portraitDown,
+                                            DeviceOrientation.portraitUp,
+                                          ]);
+                                        }
+                                        setState(() {});
+                                      },
+                                    ),
+                                  ),
+                                  //子母畫面
+                                  Expanded(
+                                    child: IconButton(
+                                      icon: Icon(Icons.featured_video),
+                                      onPressed: () async {
+                                        try {
+                                          await platform
+                                              .invokeMethod('showNativeView');
+                                        } on PlatformException catch (e) {
+                                          debugPrint(
+                                              "子母畫面執行失敗: '${e.message}'.");
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )),
+                      ),
+                    ),
+                  ] else
+                    ...[],
                 ],
               ),
             );
