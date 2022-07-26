@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intro/model/intro_pages.dart';
 import 'package:intro/navigation/app_state_manager.dart';
 import 'package:intro/views/about_view.dart';
-import 'package:intro/views/article_view.dart';
 import 'package:intro/views/drag_play_view.dart';
 import 'package:intro/views/type_setting_view.dart';
 import 'package:intro/views/video_view.dart';
@@ -70,15 +69,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     Provider.of<AppStateManager>(context, listen: false)
                         .TapOnArticle(true);
                   }),
-              ListTile(
-                  leading: const Icon(Icons.science),
-                  title: const Text('實驗頁面'),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginPage()),
-                    );
-                  }),
               ExpansionTile(
                   title: Text(
                     '作品集',
@@ -139,32 +129,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                 builder: (context) => const TypeSettingPage(
                                       title: '文章模板',
                                     )),
-                          );
-                        }),
-                    ListTile(
-                        leading: const Icon(
-                          Icons.science,
-                          color: Colors.transparent,
-                        ),
-                        title: const Text('文字辨識'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginPage()),
-                          );
-                        }),
-                    ListTile(
-                        leading: const Icon(
-                          Icons.science,
-                          color: Colors.transparent,
-                        ),
-                        title: const Text('取得當前座標'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginPage()),
                           );
                         }),
                   ]),
