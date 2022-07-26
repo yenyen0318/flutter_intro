@@ -5,7 +5,6 @@ import 'package:intro/views/about_view.dart';
 import 'package:intro/views/drag_play_view.dart';
 import 'package:intro/views/type_setting_view.dart';
 import 'package:intro/views/video_view.dart';
-import 'package:intro/views/login_view.dart';
 import 'package:intro/views/todo_view.dart';
 import 'package:intro/widgets/custom_gradient_item.dart';
 import 'package:intro/widgets/tools.dart';
@@ -67,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   title: const Text('學習筆記'),
                   onTap: () {
                     Provider.of<AppStateManager>(context, listen: false)
-                        .TapOnArticle(true);
+                        .tapOnArticle(true);
                   }),
               ExpansionTile(
                   title: Text(
@@ -137,10 +136,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   title: const Text('設定'),
                   onTap: () {
                     Provider.of<AppStateManager>(context, listen: false)
-                        .TapOnSettings(true);
+                        .tapOnSettings(true);
                   }),
               ListTile(
-                  leading: const Icon(Icons.settings),
+                  leading: const Icon(Icons.logout),
                   title: const Text('登出'),
                   onTap: () {
                     Provider.of<AppStateManager>(context, listen: false)

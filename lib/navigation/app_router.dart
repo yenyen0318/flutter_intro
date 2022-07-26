@@ -39,11 +39,11 @@ class AppRouter extends RouterDelegate
     }
 
     if (route.settings.name == IntroPages.setting) {
-      appStateManager.TapOnSettings(false);
+      appStateManager.tapOnSettings(false);
     }
 
     if (route.settings.name == IntroPages.article) {
-      appStateManager.TapOnArticle(false);
+      appStateManager.tapOnArticle(false);
     }
 
     return true;

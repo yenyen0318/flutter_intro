@@ -20,6 +20,7 @@ class AppStateManager extends ChangeNotifier {
     Timer(const Duration(milliseconds: 2000), () {
       _initialized = true;
       _didSetting = false;
+      _didArticle = false;
       notifyListeners();
     });
   }
@@ -32,8 +33,7 @@ class AppStateManager extends ChangeNotifier {
 
   //登出
   void logout() {
-    _loggedIn = false;
-    _initialized = false;
+    _loggedIn = _initialized = _didArticle = false;
 
     initializeApp();
     notifyListeners();
@@ -47,13 +47,15 @@ class AppStateManager extends ChangeNotifier {
   }
 
   //進入設定頁
-  void TapOnSettings(bool selected){
+  void tapOnSettings(bool selected){
+    _didArticle = false;
     _didSetting = selected;
     notifyListeners();
   }
 
   //進入設定頁
-  void TapOnArticle(bool selected){
+  void tapOnArticle(bool selected){
+    _didSetting = false;
     _didArticle = selected;
     notifyListeners();
   }
